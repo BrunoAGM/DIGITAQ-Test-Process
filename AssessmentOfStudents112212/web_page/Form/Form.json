@@ -1,0 +1,31 @@
+{
+  "modelVersion" : "2.3",
+  "id" : "Form",
+  "name" : "Form",
+  "lastUpdate" : 1685919973146,
+  "rows" : [
+    [ ]
+  ],
+  "assets" : [
+    {
+      "id" : "9232fae3-85cd-4cf4-8e4e-e1951276cbb7",
+      "name" : "style.css",
+      "type" : "css",
+      "order" : 0,
+      "external" : false
+    },
+    {
+      "id" : "72a3cca9-4244-47f4-bc26-6666024462fb",
+      "name" : "localization.json",
+      "type" : "json",
+      "order" : 0,
+      "external" : false
+    }
+  ],
+  "inactiveAssets" : [ ],
+  "variables" : { },
+  "hasValidationError" : false,
+  "uuid" : "333e2c82-dd1b-41e7-bd2f-864cd8fdc2d9",
+  "type" : "form",
+  "description" : "Page generated with Bonita UI designer"
+}

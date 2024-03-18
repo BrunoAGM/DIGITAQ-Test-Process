@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0" productVersion="7.15.0">
+    <businessObjects>
+        <businessObject qualifiedName="com.company.model.Claim">
+            <fields>
+                <field type="STRING" length="255" name="levelClaim" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="moduleClaim" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="semestre" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="groupe" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="description" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="LAZY" name="teacher" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="mark" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="isSatisfied" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="correctedMark" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Exam">
+            <description> the exam that needs to be created collaboratively.</description>
+            <fields>
+                <field type="STRING" length="255" name="moduleExam" nullable="true" collection="false"/>
+                <field type="LOCALDATETIME" length="255" name="dateExam" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="subject" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="structure" nullable="true" collection="false"/>
+                <field type="INTEGER" length="255" name="numberOfExercises" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="room" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="collaborators" nullable="true" collection="true"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="requester" nullable="true" collection="false"/>
+                <field type="LOCALDATE" length="255" name="collaborationDeadLine" nullable="true" collection="false"/>
+                <field type="BOOLEAN" length="255" name="isPassed" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="studyLevel" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="semester" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="guards" nullable="true" collection="true"/>
+                <relationField type="COMPOSITION" reference="com.company.model.Feedback" fetchType="EAGER" name="feedbacks" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="sessionExam" nullable="true" collection="false"/>
+                <relationField type="COMPOSITION" reference="com.company.model.Report" fetchType="EAGER" name="guardingReport" nullable="true" collection="false"/>
+                <field type="LOCALDATETIME" length="255" name="paperPreview" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.ExamMark">
+            <fields>
+                <field type="LONG" length="255" name="exam" nullable="true" collection="false"/>
+                <field type="FLOAT" length="255" name="mark" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Feedback">
+            <fields>
+                <field type="STRING" length="255" name="teacherName" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="description" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="status" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Groups">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Student" fetchType="EAGER" name="students" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="studyLevel" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Modules">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <field type="INTEGER" length="255" name="coefficient" nullable="true" collection="false"/>
+                <field type="INTEGER" length="255" name="credit" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="mainTeacher" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="teachers" nullable="true" collection="true"/>
+                <field type="FLOAT" length="255" name="percentExam" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Report">
+            <fields>
+                <relationField type="AGGREGATION" reference="com.company.model.Student" fetchType="EAGER" name="absentStudents" nullable="true" collection="true"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Teacher" fetchType="EAGER" name="absentGuards" nullable="true" collection="true"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Student" fetchType="EAGER" name="fraudCases" nullable="true" collection="true"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Student">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="email" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="studyLevel" nullable="true" collection="false"/>
+                <relationField type="COMPOSITION" reference="com.company.model.ExamMark" fetchType="EAGER" name="examMarks" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="userName" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.StudyLevel">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Modules" fetchType="EAGER" name="modulesS1" nullable="true" collection="true"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Modules" fetchType="EAGER" name="modulesS2" nullable="true" collection="true"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.Teacher">
+            <fields>
+                <field type="STRING" length="255" name="name" nullable="true" collection="false"/>
+                <field type="STRING" length="255" name="email" nullable="true" collection="false"/>
+                <relationField type="AGGREGATION" reference="com.company.model.Groups" fetchType="EAGER" name="groups" nullable="true" collection="true"/>
+                <field type="STRING" length="255" name="userName" nullable="true" collection="false"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>
